@@ -14336,9 +14336,9 @@ bVx7QjgAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Resposta: </strong></p>
-<p>A melhor profundidade do modelo é a 3, pois a curva de aprendizagem e teste convergem para valores similares e bem próximos de 1.
-Em geral, com mais pontos de treinamento a pontuação da curva de treinamento tende a melhorar, como é possível analisar no gráfico acompanhando o training score em todas as profundidades apresentadas.</p>
-<p>O inverso ocorre com a curva de teste, o acerto diminui ligeiramente se mais dados forem inseridos para teste neste gráfico.</p>
+<p>A melhor profundidade do modelo é a 3, pois a curva de aprendizagem e teste convergem para valores similares e bem próximos de 1.</p>
+<p>Em geral, com mais pontos de treinamento a pontuação da curva de treinamento tende a diminuir, como é possível analisar no gráfico acompanhando o training score em todas as profundidades apresentadas, pois quanto mais pontos tiver, mais complexo fica desenvolver um modelo que se ajuste a todos os pontos.</p>
+<p>O inverso ocorre com a curva de teste, quanto mais dados forem usados no treinamento, a pontuação tende a melhorar (não descartando pequenas flutuações de queda). Além do fato de que a distância entre os dois scores diminui se mais pontos de treinamento são adicionados.</p>
 <p>Ter mais pontos pode beneficiar o modelo, porém a partir de um determinado número de pontos de treinamento a pontuação tende a permanecer a mesma, como é possível notar a partir de 300 pontos de treinamento. As curvas também tendem a convergir em um valor aproximado com o aumento de pontos de treinamento, é possível analisar o "espaço" entre os gráficos se estreitando entre as curvas com o aumento dos pontos de treinamento, porém a partir dos 350 pontos divergem um pouco.</p>
 
 </div>
@@ -14807,8 +14807,8 @@ YUnPGGNM0LCkZ4wxJmj8P1nYPsy3SeS6AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Resposta: </strong></p>
-<p>No modelo de profundidade máxima 1, ele sofre de viés (erro sistemático), que é o fato do modelo estar subajustado(underfitting), pois possui poucos pontos de treinamento e teste. Notamos isso no gráfico pelo baixo Training Score, que é o mais baixo dentre as profundiades apresentadas, quanto maior a profundidade, maior a complexidade do modelo.</p>
-<p>No modelo de profundidade máxima 10, ocorre o erro de variância (erro aleatório), o sistema está sobre ajustado (overfitting) e não consegue generalizar bem. Notamos isso pois o modelo tem alta variância e baixo viés. Note no gráfico acima o score de treinamneto esta próximo de 1, e o de teste próximo de 0,8. Note também que a distância entre estes dois valores é outro fator que indica overfiting.</p>
+<p>No modelo de profundidade máxima 1, ele sofre de viés (erro sistemático), que é o fato do modelo estar subajustado(underfitting), pois o modelo é simples demais para encontrar as relações, é como se tentassemos separar o conjunto de dados com uma simples reta, e muitos pontos ficassem mal classificados. Notamos isso no gráfico pelo baixo Training Score, que é o mais baixo dentre as profundiades apresentadas, quanto maior a profundidade, maior a complexidade do modelo.</p>
+<p>No modelo de profundidade máxima 10, ocorre o erro de variância (erro aleatório), o sistema está sobre ajustado (overfitting) e não consegue generalizar bem. Notamos isso pois o modelo tem alta variância e baixo viés. Note no gráfico acima o score de treinamento esta próximo de 1, e o de teste próximo de 0,8. Note também que a distância entre estes dois valores é outro fator que indica overfiting.</p>
 
 </div>
 </div>
@@ -15936,7 +15936,10 @@ RUREREREx0gHKCIiIiIiOkY6QBERERER0TH+AjubpkUmDkgvAAAAAElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Resposta: </strong></p>
 <p>A técnica de de validação cruzada k-fold consiste em dividir o conjunto de exemplos em k subconjuntos de tamanho aproximado.</p>
-<p>Na primeira etapa utilizamos um k-1 subconjunto para teste, e utilizamos os demais k-1 subconjuntos para estimar o modelo, o processo se repete k vezes, alternando o k-n subconjunto utilizado como preditor. No final é calculado a média do desempenho dos preditores.</p>
+<p>Chamamos cada subconjunto de de k-n, onde n é o número total de subconjuntos.</p>
+<p>Então utilizamos o primeiro subconjunto (k-1) para teste, e o restante (no caso, k-2 até k-n) para treinamento. O processo é repetido n vezes alternando o subconjunto utilizado para teste. No final é feito uma média do desempenho de todos os modelos.</p>
+<p>Exemplo: Digamos que dividimos um modelo em 3 pedaços, portanto k=3.
+Na primeira etapa o k-1 é usado para teste e o k-2 e k-3 são utilizados para treinamento. Depois o k-2 é utilizado para teste e o k-1 e k-2 treinamento, por último, o k-3 é o de teste, e o k-1 e k-2 treinamento. No final tiramos a média do desempenho dos três testes. Se chama validação cruzada justamente pois alternamos valores de teste e treinamento para achar um valor mais adequado para o modelo utilizando a média.</p>
 <p>Os benefícios desta técnica é alterar os valores que usamos como treinamento de teste, isso resulta num melhor desempenho do modelo.</p>
 <p>O grid search não tem a preocupação de comparar as diferentes combinações de parâmetros sem o uso da validação cruzada.</p>
 
