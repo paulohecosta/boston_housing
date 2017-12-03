@@ -16,10 +16,10 @@ print "O conjunto de dados de imóveis de Boston tem {} pontos com {} variáveis
 # print data.head(30)
 
 # TODO: Preço mínimo dos dados
-minimum_price = min(prices)
+minimum_price = np.min(prices)
 
 # TODO: Preço máximo dos dados
-maximum_price = max(prices)
+maximum_price = np.max(prices)
 
 # TODO: Preço médio dos dados
 mean_price = np.mean(prices)
